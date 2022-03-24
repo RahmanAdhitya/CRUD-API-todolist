@@ -35,6 +35,9 @@ const todo = () => {
             deleteBtn={() => {
               deleteListBtn(val.id);
             }}
+            editStatusBtn={() => {
+              editStatusHandler(val.id);
+            }}
           />
         </Center>
       );
@@ -51,7 +54,6 @@ const todo = () => {
     try {
       const newData = {
         action: inputValue,
-        status: 'Not Done',
       };
       console.log(newData);
       const res = await axiosInstance.post(`/`, newData);
@@ -59,6 +61,21 @@ const todo = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const editStatusHandler = async (id) => {
+    console.log(todoList);
+    const dataToFind = todoList.find((val) => {
+      return val.id == id;
+    });
+
+    console.log(dataToFind);
+    const newStatus = {
+      status: !dataToFind.status,
+    };
+
+    const res = await axiosInstance.patch(`/${id}`, newStatus);
+    setTodoList(res.data.result);
   };
 
   useEffect(() => {

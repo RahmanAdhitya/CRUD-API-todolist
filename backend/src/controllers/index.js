@@ -41,27 +41,27 @@ const todoControllers = {
   },
   editTodoListById: (req, res) => {
     const todoId = req.params.id;
-    const editedData = req.body;
+    const editTodoData = req.body;
 
-    const findIndex = todoDB.findIndex((val) => {
+    const findIdx = todoDB.findIndex((val) => {
       return val.id == todoId;
     });
 
-    if (findIndex == -1) {
+    if (findIdx == -1) {
       res.status(404).json({
-        message: 'data not Found',
+        message: 'list not found',
       });
       return;
     }
 
-    todoDB[findIndex] = {
-      ...todoDB[findIndex],
-      ...editedData,
+    todoDB[findIdx] = {
+      ...todoDB[findIdx],
+      ...editTodoData,
     };
 
     res.status(200).json({
-      message: 'todo edited',
-      result: todoDB[findIndex],
+      message: 'Status Change',
+      result: todoDB,
     });
   },
   deleteTodoListById: (req, res) => {

@@ -6,8 +6,8 @@ const todoDB = [
   },
   {
     id: 2,
-    action: 'olahraga',
-    status: 'Not Done',
+    action: 'makan',
+    status: 'Not done',
   },
 ];
 
